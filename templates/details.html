@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row bg-white p-4 rounded-4 shadow-sm border text-end mt-4">
+    <div class="col-md-6 mb-4">
+        <img src="{{ url_for('static', filename=car.image_url) }}" class="img-fluid rounded-4 shadow">
+    </div>
+    <div class="col-md-6 px-4">
+        <h1 class="display-5 fw-bold text-dark">{{ car.brand }}</h1>
+        <h2 class="text-danger mb-4">{{ car.model }}</h2>
+        <hr>
+        <h3 class="mb-4 text-dark">السعر: {{ "{:,.0f}".format(car.price) }} ج.م</h3>
+        
+        <div class="p-4 rounded-3 mb-4 bg-light">
+            <h5 class="text-danger fw-bold mb-3">عن السيارة:</h5>
+            <p class="lead text-dark fw-bold">سيارة {{ car.brand }} موديل {{ car.model }} متاحة الآن للمعاينة. حالة الزيرو!</p>
+        </div>
+        
+        <div class="d-grid gap-2">
+            <a href="https://wa.me/201234567890?text=أنا مهتم بسيارة {{ car.brand }} {{ car.model }}" target="_blank" class="btn btn-success btn-lg fw-bold p-3">
+                💬 تواصل عبر الواتساب الآن
+            </a>
+            <a href="/" class="btn btn-outline-secondary mt-2">العودة للمعرض</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

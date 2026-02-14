@@ -1,0 +1,44 @@
+/* تصميم احترافي بلمسة عصرية */
+:root {
+    --main-color: #e74c3c;
+    --dark-bg: #1a1a1a;
+    --glass-effect: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    background: var(--glass-effect);
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.btn-add {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+/* تأثير تحريك عند ظهور الصفحة */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.car-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
