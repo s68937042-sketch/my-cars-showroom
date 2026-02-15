@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Car
 import os
@@ -5,9 +6,11 @@ import os
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///arab_cars.db'
 app.config['UPLOAD_FOLDER'] = 'static/'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db.init_app(app)
 
-# إنشاء قاعدة البيانات تلقائياً عند أول تشغيل
+# السطر ده هو اللي هينهي المشكلة ويفتح قاعدة البيانات فوراً
 with app.app_context():
     db.create_all()
 
@@ -43,10 +46,5 @@ def add_car_action():
         db.session.commit()
     return redirect(url_for('index'))
 
-# هذا السطر ضروري جداً لـ Vercel ليعرف مدخل التطبيق
+# لازم السطر ده عشان Vercel يشوف الموقع
 app = app
-
-if __name__ == '__main__':
-
-    app.run()
-    app = app
