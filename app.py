@@ -7,6 +7,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///arab_cars.db'
 app.config['UPLOAD_FOLDER'] = 'static/'
 db.init_app(app)
 
+# إنشاء قاعدة البيانات تلقائياً عند أول تشغيل
+with app.app_context():
+    db.create_all()
+
 @app.route('/')
 def index():
     search_query = request.args.get('search')
@@ -39,9 +43,8 @@ def add_car_action():
         db.session.commit()
     return redirect(url_for('index'))
 
+# هذا السطر ضروري جداً لـ Vercel ليعرف مدخل التطبيق
+app = app
+
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    # هنا التعديل عشان يشتغل على أي سيرفر أو موبايل
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run()
