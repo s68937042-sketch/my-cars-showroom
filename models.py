@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Car(db.Model):
+    __tablename__ = 'car' # ضفنا دي عشان نضمن إن الجدول يتعرف
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(50), nullable=False)
     model = db.Column(db.String(50), nullable=False)
